@@ -1,0 +1,25 @@
+{
+    "name": "Seagrass",
+    "size": 6037,
+    "depth":3,
+    "trainSize": 0.90,
+    "testSize": 0.05,
+    "x": 512,
+    "y": 256,
+    "imageChannels": 3,
+    "preProcessedPath": "",
+    "downsize": true,
+    "classes" : 2,
+    "tfPrefetch":true,
+    "path": "../data/Seagrass/dataset/",
+    "serializedObject": false,
+    "fileName": "SerializedSeagrass",
+    "images": "imgs_flat/",
+    "labels": "gt_flat/",
+    "ClassToRGB": [
+        [0,0,0],
+        [255,255,255]
+    ]
+}
+
+

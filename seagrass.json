@@ -1,0 +1,84 @@
+{
+    "description": "This pipeline selects all images of a datasource and requests annotations.",
+    "author": "Tobias Kwant",
+    "pipe-schema-version" : 0.0,
+    "elements": [{
+        "peN": 0,
+        "peOut": [1],
+        "datasource": {
+          "type": "rawFile"
+        }
+      },
+      {
+        "peN": 1,
+        "peOut": [2],
+        "script": {
+          "path": "requestAnnos.py",
+          "description": "Request annotations for all images in a folder"
+        }
+      },
+      {
+        "peN": 2,
+        "peOut": [3, 5],
+        "annoTask": {
+          "name": "Single Image Annotation Task",
+          "type": "sia",
+          "instructions": "Please draw bounding boxes for all objects in image.",
+          "configuration": {
+            "tools": {
+              "point": false,
+              "line": false,
+              "polygon": true,
+              "bbox": false
+            },
+            "actions": {
+              "drawing": true,
+              "labeling": true,
+              "edit": {
+                "label": true,
+                "bounds": true,
+                "delete": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "peN": 3,
+        "peOut": [4,6],
+        "script": {
+          "path": "training.py",
+          "description": "Train labeled images"
+        }
+      },
+      {
+        "peN": 4,
+        "peOut": [6],
+        "script": {
+          "path": "evalGT.py",
+          "description": "Test Ground Trouth"
+        }
+      },
+      {
+        "peN": 5,
+        "peOut": [6],
+        "script": {
+          "path": "export_csv.py",
+          "description": "Export all annotations to a csv file."
+        }
+      },
+      {
+        "peN": 6,
+        "peOut": [7],
+        "dataExport": {}
+      },
+      {
+        "peN": 7,
+        "peOut": null,
+        "loop": {
+          "maxIteration": 10,
+          "peJumpId": 1
+        }
+      }
+    ]
+  }
