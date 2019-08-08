@@ -1,7 +1,3 @@
-# LookingForSeagrasLostPipeline
-
-#Instruction
-
 # Seagrass LOST Pipeline
 This Repo is a setting up example for semantic Segmentation in LOST.
 This Repo is based on this Repo ([Link](https://github.com/EnviewFulda/LookingForSeagrassSemanticSegmentation)) 
